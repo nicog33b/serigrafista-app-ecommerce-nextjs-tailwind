@@ -18,7 +18,7 @@ const ProductCard = () => {
 
           <div className="options">
             <div className="options-size">
-              <h1>sizes</h1>
+              <h1>Tamaños</h1>
               <ul className="flex">
                 <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">xs</li>
                 <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">s</li>
@@ -29,7 +29,7 @@ const ProductCard = () => {
             </div>
 
             <div className="options-colors">
-              <h1>colors</h1>
+              <h1>Colores</h1>
               <ul className="flex">
                 <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-red-500"></li>
                 <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-black"></li>
@@ -40,7 +40,7 @@ const ProductCard = () => {
             </div>
           </div>
           <a href="#" className="btn">
-            add to cart
+            Agregar al carro
           </a>
         </section>
       </div>
