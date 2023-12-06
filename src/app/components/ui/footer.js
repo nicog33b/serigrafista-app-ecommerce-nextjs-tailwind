@@ -3,7 +3,7 @@ import { BsFacebook,BsInstagram, BsBehance } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6">
+    <footer className="  bg-green-700 text-white py-6 border-top border-blackish">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
         <nav className="flex flex-wrap gap-4 mb-6">
           <a className="hover:underline">Inicio</a>

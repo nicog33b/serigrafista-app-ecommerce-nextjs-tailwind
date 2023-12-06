@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Banner from './components/home/banner'
-import NewProducts from './components/cards/newProducts'
+
+import Hoodies from './components/home/hoodies'
+import ContactForm from './components/home/contactForm'
+
 export default function Home() {
   return (
 
 <main>
-<Banner></Banner>
-<NewProducts></NewProducts>
-
+<Hoodies></Hoodies>
+<ContactForm></ContactForm>
 </main>
 
   )
