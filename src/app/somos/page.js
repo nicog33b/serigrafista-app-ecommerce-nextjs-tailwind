@@ -35,7 +35,7 @@ const Somos = () => {
               <img
                 src="/matiAlbin.jpg"  // Reemplaza con la ruta de tu imagen
                 alt="Nosotros"
-                className="w-full h-auto rounded-md shadow-md"
+                className="w-full h-auto rounded-md shadow-md object-cover"
               />
             </div>
 

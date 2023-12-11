@@ -20,13 +20,29 @@ const Hoodies = () => {
       <div className="product-container">
         <h1 className='font-sans'>Niños</h1>
         <div className="product-image-wrapper border hover:border-green-400">
-          <img src="/ninio.jpg" alt="" className="product-image" />
+          <img src="/niños.jpg" alt="" className="product-image" />
         </div>
       </div>
       <div className="product-container ">
         <h1 className='font-sans'>Estampadas</h1>
         <div className="product-image-wrapper border hover:border-yellow-400">
           <img src="/createyourprint.jpg" alt="" className="product-image" />
+        </div>
+      </div>
+    </div>
+
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-2 gap-8">
+        {/* Aquí van tus dos rectángulos */}
+        <div className="bg-gray-200 p-4 h-[12rem]">
+        <div className="product-image-wrapper border hover:border-yellow-400">
+          <img src="/createyourprint.jpg" alt="" className="product-image" />
+        </div>
+        </div>
+        <div className="bg-gray-200 p-4 h-[12rem]">
+        <div className="product-image-wrapper border hover:border-yellow-400">
+          <img src="/createyourprint.jpg" alt="" className="product-image" />
+        </div>
         </div>
       </div>
     </div>
