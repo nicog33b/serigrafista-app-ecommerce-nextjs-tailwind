@@ -21,7 +21,7 @@ const Navbar = () => {
           </div>
 
           <div className="text-gray-500 text-[12px]">
-            <b>Remera personalizada</b> Personalizada por tu mismo! 
+            <b>Remeras personalizadas</b> Personalizada por vos mismo! 
           </div>
 
           <div className="flex gap-4">

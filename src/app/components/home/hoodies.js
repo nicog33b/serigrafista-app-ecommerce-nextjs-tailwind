@@ -6,46 +6,51 @@ const Hoodies = () => {
     <div className='container'>
     <div className="product-grid-container mb-0 m-1 ">
       <div className="product-container ">
-        <h1 className='font-sans'>Mujeres</h1>
+      
         <div className="product-image-wrapper border hover:border-pink-400">
-          <img src="/Black.jpg" alt="" className="product-image" />
+          <img src="/fem1.jpg" alt="" className="product-image" />
         </div>
       </div>
       <div className="product-container ">
-        <h1 className='font-sans'>Hombres</h1>
+     
         <div className="product-image-wrapper border hover:border-blue-400">
-          <img src="/White.jpg" alt="" className="product-image" />
+          <img src="/white3.jpg" alt="" className="product-image" />
         </div>
       </div>
       <div className="product-container">
-        <h1 className='font-sans'>Niños</h1>
+    
         <div className="product-image-wrapper border hover:border-green-400">
           <img src="/niños.jpg" alt="" className="product-image" />
         </div>
       </div>
       <div className="product-container ">
-        <h1 className='font-sans'>Estampadas</h1>
+       
         <div className="product-image-wrapper border hover:border-yellow-400">
-          <img src="/createyourprint.jpg" alt="" className="product-image" />
+          <img src="/adolescentes3.jpg" alt="" className="product-image " />
         </div>
       </div>
     </div>
 
     <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2 gap-8">
-        {/* Aquí van tus dos rectángulos */}
-        <div className="bg-gray-200 p-4 h-[12rem]">
-        <div className="product-image-wrapper border hover:border-yellow-400">
-          <img src="/createyourprint.jpg" alt="" className="product-image" />
-        </div>
-        </div>
-        <div className="bg-gray-200 p-4 h-[12rem]">
-        <div className="product-image-wrapper border hover:border-yellow-400">
-          <img src="/createyourprint.jpg" alt="" className="product-image" />
-        </div>
-        </div>
+  <div className="grid  lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-1 gap-8">
+ 
+    <div className="bg-gray-200 p-4 h-[12rem]">
+      <div className="product-image-wrapper border hover:border-yellow-400">
+        <img src="/estampadas2.jpg" alt="" className="product-image banner-option h-full w-full" />
       </div>
     </div>
+
+
+    <div className="bg-gray-200 p-4 h-[12rem]">
+      <div className="product-image-wrapper border hover:border-yellow-400 h-full w-full">
+        <img src="/coleccionables6.jpg" alt="" className="product-image banner-option" />
+      </div>
+    </div>
+
+
+    
+  </div>
+</div>
 
 
 {/*
