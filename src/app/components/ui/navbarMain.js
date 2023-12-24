@@ -12,6 +12,9 @@ const NavbarMain = () => {
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
+
+
+//
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
   };
@@ -44,7 +47,7 @@ const NavbarMain = () => {
   useEffect(() => {
     const checkAuthentication = () => {
       // Replace this with your actual authentication logic
-      const isAuthenticated = true;
+      const isAuthenticated = false;
       setUserAuthenticated(isAuthenticated);
     };
   
