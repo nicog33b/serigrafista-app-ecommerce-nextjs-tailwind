@@ -1,34 +1,143 @@
 import React, { useState } from "react";
+import validator from 'validator';  // Importar validator.js
+import Swal from 'sweetalert2'
 import { AiOutlineClose } from "react-icons/ai";
 
 const RegistrationModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-
+    confirmPassword: "",
+    nombre: "",
+    apellido: "",
+    telefono: "", // Agregado el campo para el número de teléfono
   });
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
+    // Validación para permitir solo letras en Nombre y Apellido
+    if (name === "nombre" || name === "apellido") {
+      const onlyLetters = value.replace(/[^A-Za-z]/g, "");
+      setFormData((prevData) => ({ ...prevData, [name]: onlyLetters }));
+    }
+    // Validación para permitir solo números en Teléfono
+    else if (name === "telefono") {
+      const onlyNumbers = value.replace(/[^0-9]/g, "");
+      setFormData((prevData) => ({ ...prevData, [name]: onlyNumbers }));
+    }
+    // Validación para la longitud de la contraseña
+    else if (name === "password" && value.length > 6) {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+    // Para otros campos
+    else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+  };
+  
+  
   const handleRegistration = async (e) => {
     e.preventDefault();
-
+  
     try {
-      console.log('Estos datos se pasan como registro: '+JSON.stringify(formData))
+
+
+      // Verificaciones
+      if (
+        formData.nombre.trim() === "" ||
+        formData.apellido.trim() === "" ||
+        formData.email.trim() === "" ||
+        formData.telefono.trim() === "" ||
+        formData.password.trim() === "" ||
+        formData.confirmPassword.trim() === ""
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Todos los campos son obligatorios.",
+        });
+        return;
+      }
+
+        // Verificación de disponibilidad del correo electrónico
+    const emailAvailabilityResponse = await fetch(`http://localhost:3000/auth/check-email?email=${formData.email}`);
+    const { available } = await emailAvailabilityResponse.json();
+
+    if (!available) {
+      // Mostrar SweetAlert indicando que el correo electrónico ya está en uso
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "El correo electrónico ya está en uso. Por favor, elige otro.",
+      });
+      return;
+    }
+
+  
+      // Verificación de la longitud de la contraseña
+      if (formData.password.length <= 5) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "La contraseña debe tener más de 6 caracteres.",
+        });
+        return;
+      }
+  
+      // Verificación de coincidencia de la contraseña y confirmación
+      if (formData.password !== formData.confirmPassword) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "La contraseña y la confirmación no coinciden.",
+        });
+        return;
+      }
+            // Validar email utilizando validator.js
+            if (!validator.isEmail(formData.email)) {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Ingresa un correo electrónico válido.",
+              });
+              return;
+            }
+
+     
       const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          telefono: formData.telefono,
+        }),
       });
 
       if (response.ok) {
-        // Handle success, e.g., redirect or show a success message
-        console.log("User created successfully!");
+           // Mostrar SweetAlert de éxito
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Usuario creado exitosamente.',
+      });
+
+      // Limpiar formulario después del registro exitoso
+      setFormData({
+        email: "",
+        password: "",
+        confirmPassword:"",
+        nombre: "",
+        apellido: "",
+        telefono: "",
+      });
+
+      onClose(); // Cerrar el modal después del regis
       } else {
         // Handle error, e.g., display an error message
         console.error("Error creating user:", response.statusText);
@@ -40,6 +149,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  
   return (
     <div className="fixed inset-0 overflow-y-auto" style={{ zIndex: 25 }}>
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -77,79 +187,71 @@ const RegistrationModal = ({ isOpen, onClose }) => {
                   Registro de usuario
                 </h6>
 
-                <form className="mt-6 space-y-6" onSubmit={handleRegistration}>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label
-                        htmlFor="firstName"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Nombre
-                      </label>
-                      <input
-                        name="firstName"
-                        type="text"
-                        autoComplete="given-name"
-                        required
-                        className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="lastName"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Apellido
-                      </label>
-                      <input
-                        name="lastName"
-                        type="text"
-                        autoComplete="family-name"
-                        required
-                        className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
+                <form className="mt-6 space-y-6" onSubmit={handleRegistration} noValidate>
+                <div className="grid grid-cols-2 gap-2">
+        <div>
+          <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
+            Nombre
+          </label>
+          <input
+            name="nombre"
+            type="text"
+            autoComplete="given-name"
+            required
+            value={formData.nombre}
+            className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
+            Apellido
+          </label>
+          <input
+            name="apellido"
+            type="text"
+            autoComplete="family-name"
+            required
+            value={formData.apellido}
+            className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Email
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        required
-                        className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          Email
+        </label>
+        <div className="mt-1">
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            value={formData.email}
+            className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Teléfono
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        name="phone"
-                        type="tel"
-                        autoComplete="tel"
-                        required
-                        className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
+      <div>
+        <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
+          Teléfono
+        </label>
+        <div className="mt-1">
+          <input
+            name="telefono"
+            type="tel"
+            autoComplete="tel"
+            required
+            value={formData.telefono}
+            className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
                   <div>
                     <label

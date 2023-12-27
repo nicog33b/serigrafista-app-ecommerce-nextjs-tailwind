@@ -51,10 +51,12 @@ const LoginModal = ({ isOpen, onClose }) => {
               'Authorization': `${storedToken}`,
             },
           });
-  
+   
           if (usersResponse.ok) {
             const usersData = await usersResponse.json();
             console.log('Respuesta de /users:', usersData);
+            localStorage.setItem ('user', JSON.stringify(usersData));
+            window.location.reload();
           } else {
             console.error('Error al obtener usuarios:', usersResponse.statusText);
           }

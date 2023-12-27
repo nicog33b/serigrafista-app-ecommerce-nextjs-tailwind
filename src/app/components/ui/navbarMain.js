@@ -12,30 +12,26 @@ const NavbarMain = () => {
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
-
-
-//
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
   };
 
-  //user modal
   const openUserModal = () => {
     setUserModalOpen(true);
   };
+
   const closeUserModal = () => {
     setUserModalOpen(false);
   };
-  
-  //login modal 
+
   const openLoginModal = () => {
     setLoginModalOpen(true);
   };
+
   const closeLoginModal = () => {
     setLoginModalOpen(false);
   };
 
-  
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -46,13 +42,14 @@ const NavbarMain = () => {
 
   useEffect(() => {
     const checkAuthentication = () => {
-      // Replace this with your actual authentication logic
-      const isAuthenticated = false;
+      // Check if token exists in localStorage
+      const isAuthenticated = localStorage.getItem("token") !== null;
       setUserAuthenticated(isAuthenticated);
     };
-  
+
     checkAuthentication();
   }, []);
+
 
   return (
     <div
