@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2'
 import jwt from 'jsonwebtoken';
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -38,13 +39,15 @@ const LoginModal = ({ isOpen, onClose }) => {
         localStorage.setItem('token', data.token);
   
         try {
+          //guarda el token(permisos para logear) obtenido del login en localStorage
           const storedToken = localStorage.getItem('token');
-          console.log(storedToken);
   
           // Decodificar el token para obtener el _id
           const decodedToken = jwt.decode(storedToken);
+          //id del usuario logeeado obtenido del token para hacer el get al user/:id
           const userId = decodedToken._id;
   
+          //get datos del usuario ingresado. que luego se guardan en localstoragew
           const usersResponse = await fetch(`http://localhost:3000/auth/users/${userId}`, {
             method: 'GET',
             headers: {
@@ -53,23 +56,47 @@ const LoginModal = ({ isOpen, onClose }) => {
           });
    
           if (usersResponse.ok) {
+            //datos del usuario ingresado
             const usersData = await usersResponse.json();
-            console.log('Respuesta de /users:', usersData);
+                      // Mostrar SweetAlert de éxito
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Logeado exitosamente',
+                        text: 'Disfruta de tu visita por aquí.',
+                        timer: 9000,  // Duración en milisegundos (en este caso, 3 segundos)
+                        showConfirmButton: false,  // Ocultar el botón "OK"
+                      });
+            //guarda datos de usuario en localstorage
             localStorage.setItem ('user', JSON.stringify(usersData));
+//recarga la pagina al logear el usuario.
             window.location.reload();
+
           } else {
             console.error('Error al obtener usuarios:', usersResponse.statusText);
           }
         } catch (error) {
           console.error('Error de red al obtener usuarios:', error.message);
         }
-  
+  //cerrar el modal una vez logeado
         onClose();
       } else {
-        console.error('Error de inicio de sesión:', response.statusText);
+        console.error('Error info:', response.statusText);
+           // Mostrar SweetAlert indicando que el inicio de sesión ha fallado
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de inicio de sesión',
+        text: 'El email o la contraseña son incorrectos. Por favor, verifica tus credenciales e intenta de nuevo.',
+      });
       }
     } catch (error) {
-      console.error('Error de red:', error.message);
+      console.error('Error red:', error.message);
+             // Mostrar SweetAlert indicando que el inicio de sesión ha fallado
+             Swal.fire({
+              icon: 'error',
+              title: 'Error de red',
+              text: 'Error de red, intenta mas tarde',
+            });
+
     }
   };
   
@@ -104,7 +131,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                   Ingreso de usuario
                 </h6>
 
-                <form className="mt-6 space-y-6" onSubmit={handleLogin}>
+                <form className="mt-6 space-y-6" onSubmit={handleLogin} noValidate>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                     <div className="mt-1">
