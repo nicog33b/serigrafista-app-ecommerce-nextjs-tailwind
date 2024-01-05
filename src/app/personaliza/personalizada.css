@@ -1,0 +1,17 @@
+/* personalizada.css */
+.espacio-seleccionado {
+    background-image: none; /* Limpiar la imagen de fondo */
+    opacity: 0.5; /* Mantener la opacidad si es necesario */
+  }
+  
+  .espacio-no-seleccionado {
+    background-image: none; /* Limpiar la imagen de fondo */
+    opacity: 0; /* Mantener la opacidad si es necesario */
+  }
+  
+  .espacio-seleccionado img {
+    display: block; /* Asegurarse de que la imagen sea visible */
+    width: 100%; /* Hacer que la imagen ocupe el 100% del div */
+    height: 100%; /* Hacer que la imagen ocupe el 100% del div */
+  }
+  
