@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { register, checkEmailAvailability } from '../../../services/api/usuario/usuario'; // Update the path accordingly
 import validator from 'validator';  // Importar validator.js
 import Swal from 'sweetalert2'
 import { AiOutlineClose } from "react-icons/ai";
@@ -60,19 +61,20 @@ const RegistrationModal = ({ isOpen, onClose }) => {
         return;
       }
 
-        // Verificación de disponibilidad del correo electrónico
-    const emailAvailabilityResponse = await fetch(`http://localhost:3000/auth/check-email?email=${formData.email}`);
-    const { available } = await emailAvailabilityResponse.json();
+        // Check email availability
+      const emailAvailabilityResponse = await checkEmailAvailability(formData.email);
+      const { available } = emailAvailabilityResponse;
 
-    if (!available) {
-      // Mostrar SweetAlert indicando que el correo electrónico ya está en uso
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "El correo electrónico ya está en uso. Por favor, elige otro.",
-      });
-      return;
-    }
+      if (!available) {
+        // Mostrar SweetAlert indicando que el correo electrónico ya está en uso
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'El correo electrónico ya está en uso. Por favor, elige otro.',
+        });
+        return;
+      }
+
 
   
       // Verificación de la longitud de la contraseña
@@ -105,47 +107,31 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             }
 
      
-      const response = await fetch("http://localhost:3000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          nombre: formData.nombre,
-          apellido: formData.apellido,
-          telefono: formData.telefono,
-        }),
-      });
+           // Call the register function from the api
+           const data = await register(formData);
 
-      if (response.ok) {
            // Mostrar SweetAlert de éxito
-      Swal.fire({
-        icon: 'success',
-        title: '¡Registro exitoso!',
-        text: 'Usuario creado exitosamente.',
-      });
-
-      // Limpiar formulario después del registro exitoso
-      setFormData({
-        email: "",
-        password: "",
-        confirmPassword:"",
-        nombre: "",
-        apellido: "",
-        telefono: "",
-      });
-
-      onClose(); // Cerrar el modal después del regis
-      } else {
-        // Handle error, e.g., display an error message
-        console.error("Error creating user:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error creating user:", error.message);
-    }
-  };
+           Swal.fire({
+             icon: 'success',
+             title: '¡Registro exitoso!',
+             text: 'Usuario creado exitosamente.',
+           });
+     
+           // Limpiar formulario después del registro exitoso
+           setFormData({
+             email: '',
+             password: '',
+             confirmPassword: '',
+             nombre: '',
+             apellido: '',
+             telefono: '',
+           });
+     
+           onClose(); // Cerrar el modal después del registro exitoso
+         } catch (error) {
+           console.error('Error creating user:', error.message);
+         }
+       };
 
   if (!isOpen) return null;
 

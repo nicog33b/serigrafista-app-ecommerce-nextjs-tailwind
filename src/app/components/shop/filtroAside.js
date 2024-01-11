@@ -31,8 +31,8 @@ const FiltroAside = () => {
             ]}
           />
 
-          <CategoryOptionGoing optionName='ESTAMPADOS'></CategoryOptionGoing>
-
+          <CategoryOptionGoing optionName='ESTAMPADOS' optionLink='estampados'></CategoryOptionGoing>
+          <CategoryOptionGoing optionName='COLECCIONABLES' optionLink='stickers'></CategoryOptionGoing>
 
         </div>
       </div>

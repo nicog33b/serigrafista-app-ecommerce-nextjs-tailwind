@@ -20,13 +20,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="text-gray-500 text-[12px]">
+          <div className="text-gray-500 text-[12px] cursor-pointer hover:text-green-300" >
             <b>Remeras personalizadas</b> Personalizada por vos mismo! 
           </div>
 
           <div className="flex gap-4">
-            <select
-              className="text-gray-500 text-[12px] w-[70px]"
+            <select 
+              className="text-gray-500 text-[12px] w-[70px] cursor-pointer"
               name="currency"
               id="currency"
             >
@@ -36,7 +36,7 @@ const Navbar = () => {
             </select>
 
             <select
-              className="text-gray-500 text-[12px] w-[80px]"
+              className="text-gray-500 text-[12px] w-[80px] cursor-pointer"
               name="language"
               id="language"
             >

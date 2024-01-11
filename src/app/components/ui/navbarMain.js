@@ -53,7 +53,7 @@ const NavbarMain = () => {
 
   return (
     <div
-      className={`border-b border-gray-200 py-6 ${
+      className={`border-b border-gray-200 py-1 ${
         isScrolled ? "fixed top-0 w-full bg-white shadow-md" : ""
       }`}
       style={{ zIndex: 5 }}
@@ -65,19 +65,19 @@ const NavbarMain = () => {
 
         <div className="hidden lg:flex gap-4 text-gray-500 text-[30px]">
           {isUserAuthenticated ? (
-            <BiUser onClick={openUserModal} />
+            <BiUser className="hover:text-green-500 cursor-pointer" onClick={openUserModal} />
           ) : (
-            <BiUser onClick={openLoginModal} />
+            <BiUser className="hover:text-green-500 cursor-pointer" onClick={openLoginModal} />
           )}
           <div className="relative">
-            <FiHeart />
+            <FiHeart className="hover:text-yellow-500 cursor-pointer" />
             <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
               0
             </div>
           </div>
 
           <div className="relative">
-            <HiOutlineShoppingBag />
+            <HiOutlineShoppingBag className="hover:text-red-500 cursor-pointer" />
             <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
               0
             </div>
