@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from "react";
-import CategoryOption from "./categoryOption";
-import CategoryOptionGoing from './categoryGoing';
+import CategoryOption from "./filtroaside/categoryOption";
+import CategoryOptionGoing from './filtroaside/categoryGoing';
 
 const FiltroAside = () => {
   const [priceRange, setPriceRange] = useState([]);

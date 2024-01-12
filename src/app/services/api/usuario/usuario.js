@@ -94,4 +94,28 @@ const register = async (userData) => {
   }
 };
 
-export { login, getUserData, register,checkEmailAvailability };
+
+// Delete user account by ID
+const deleteUserAccount = async (userId, token) => {
+  try {
+    const response = await fetch(`${apiUrl}/auth/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`,
+      },
+    });
+
+    // Handle response for DELETE request
+    if (response.ok) {
+      return true; // Indicate successful deletion
+    } else {
+      throw new Error('Failed to delete user account');
+    }
+  } catch (error) {
+    console.error('Error deleting user account:', error);
+    throw error;
+  }
+};
+
+export { login, getUserData, register,checkEmailAvailability, deleteUserAccount };

@@ -4,13 +4,12 @@ import { BiUser } from "react-icons/bi";
 import { FiHeart } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import UserModal from "./modals/user";
-import LoginModal from "./modals/login";
+
 
 const NavbarMain = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isUserAuthenticated, setUserAuthenticated] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+
 
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
@@ -24,13 +23,7 @@ const NavbarMain = () => {
     setUserModalOpen(false);
   };
 
-  const openLoginModal = () => {
-    setLoginModalOpen(true);
-  };
 
-  const closeLoginModal = () => {
-    setLoginModalOpen(false);
-  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -40,15 +33,7 @@ const NavbarMain = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const checkAuthentication = () => {
-      // Check if token exists in localStorage
-      const isAuthenticated = localStorage.getItem("token") !== null;
-      setUserAuthenticated(isAuthenticated);
-    };
 
-    checkAuthentication();
-  }, []);
 
 
   return (
@@ -64,11 +49,9 @@ const NavbarMain = () => {
         </div>
 
         <div className="hidden lg:flex gap-4 text-gray-500 text-[30px]">
-          {isUserAuthenticated ? (
+         
             <BiUser className="hover:text-green-500 cursor-pointer" onClick={openUserModal} />
-          ) : (
-            <BiUser className="hover:text-green-500 cursor-pointer" onClick={openLoginModal} />
-          )}
+       
           <div className="relative">
             <FiHeart className="hover:text-yellow-500 cursor-pointer" />
             <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
@@ -87,7 +70,9 @@ const NavbarMain = () => {
 
 
         <UserModal isOpen={isUserModalOpen} onClose={closeUserModal} />
-        <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
+    
+
+
 
     </div>
   );

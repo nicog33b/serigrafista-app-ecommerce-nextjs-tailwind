@@ -25,7 +25,6 @@ const Tienda = () => {
             <ProductCard />
             {/* Otros detalles del producto */}
           </div>
-          {/* ... más productos ... */}
         </section>
       </main>
     </div>
