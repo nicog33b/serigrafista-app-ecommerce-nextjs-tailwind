@@ -42,16 +42,19 @@ const openLoginModal = () => {
       {/* Opciones de usuario */}
       {nombreDeUsuario ? (
         <p
+        style={{ backgroundColor: '#94ffa3' }}
           id="nombreDeUsuario"
           onClick={handleGoToPrivacity}
-          className="shadow-lg shadow-black rounded-lg border-2 border-blue-300  mb-[3rem] flex items-center justify-center text-white p-8 font-serif text-2xl bg-emerald-900 my-auto w-full cursor-pointer"
+          className="shadow-lg shadow-black rounded-lg border-2 border-blue-300  mb-[3rem] flex items-center justify-center text-black p-6 font-bold text-2xl  my-auto w-full cursor-pointer"
         >
           {nombreDeUsuario}
         </p>
       ) : (
         <p
+        style={{ backgroundColor: '#94ffa3' }}
+        id="nombreDeUsuario"
           onClick={openLoginModal}
-          className="shadow-lg shadow-black rounded-lg border-2 border-blue-300  mb-[3rem] flex items-center justify-center text-white p-8 font-serif text-2xl bg-emerald-900 my-auto w-full cursor-pointer"
+          className="shadow-lg shadow-black rounded-lg border-2 border-blue-300  mb-[3rem] flex items-center justify-center text-black p-6 font-bold text-2xl  my-auto w-full cursor-pointer"
         >
           Entrar / Registrarse
         </p>
