@@ -1,66 +1,72 @@
 import React from 'react';
+import Image from 'next/image'
+import { MdOutlineAttachMoney } from "react-icons/md";
+import ColorCarousel from './cardProduct/colorsCarrousel';
+
 import './productCard.css';
 
-const ProductCard = () => {
+const ProductCard = ({ tipo, tallas, precioUnitario, colores }) => {
+  // Obtener la imagen frontal del primer color (asumiendo que siempre hay al menos un color)
+  const imagenFrente = colores[0].imagenes.frente+'.webp' || '';
 
-  const coloresConCodigoHex = [
-    { nombre: 'Beige', codigoHex: '#F5F5DC' },
-    { nombre: 'Amarillo', codigoHex: '#FFFF00' },
-    { nombre: 'Naranja', codigoHex: '#FFA500' },
-    { nombre: 'Rojo', codigoHex: '#FF0000' },
-    { nombre: 'Rosa', codigoHex: '#FFC0CB' },
-    { nombre: 'Violeta', codigoHex: '#8A2BE2' },
-    { nombre: 'Azul', codigoHex: '#0000FF' },
-    { nombre: 'Verde', codigoHex: '#008000' },
-    { nombre: 'Marrón', codigoHex: '#A52A2A' },
-    { nombre: 'Gris', codigoHex: '#808080' },
-    { nombre: 'Blanco', codigoHex: '#FFFFFF' },
-    { nombre: 'Negro', codigoHex: '#000000' },
-    { nombre: 'Multicolor', codigoHex: '#FFFFFF' }, // No sé qué código asignar para "Multicolor"
-    { nombre: 'Patrón', codigoHex: '#FFFFFF' } // No sé qué código asignar para "Patrón"
-  ];
 
+  const handleTesting = () =>{
   
-  return (
-    <div className='card-id w-full'>
-      <div className="card">
-        <img
-          src="https://f.fcdn.app/imgs/5e919a/www.indiewears.uy/iweauy/448c/webp/catalogo/C0300_423_2/2000-2000/camiseta-a-la-base-peso-completo-gris-carbon.jpg"
-          alt="t-shirt"
-        ></img>
+  }
 
-        <section className="details">
-          <div className="min-details">
-            <h1>Remera <span>azul</span></h1>
-            <h1 className="price">$45.99</h1>
+  return (
+    <div className='card-id group hover:border-green-300 border-2'>
+  <h1 className='p-1 shadow-md shadow-black font-bold text-sm text-center group-hover:border-green-300 group-hover:border-2'>
+    {tipo} 
+  </h1>
+
+
+      <div className="card" style={{  }}>
+        <Image
+        className='cursor-pointer w-full h-full'
+          src={imagenFrente}
+          alt={`${tipo} - ${colores[0]?.nombre}`}
+          layout="fill"
+         
+
+        ></Image>
+
+        <section className="details ">
+          <div className="min-details ">
+            
+
+            <h1 className="price flex items-center ">
+  <div className="price text-green-500">
+    <MdOutlineAttachMoney />
+  </div>
+  <div className="price ml-2 text-3xl font-bold"> {precioUnitario}</div>
+</h1>
+
+
           </div>
 
           <div className="options">
             <div className="options-size">
               <h1>Tamaños</h1>
               <ul className="flex">
-                <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">xs</li>
-                <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">s</li>
-                <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">m</li>
-                <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">l</li>
-                <li className="border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2">xl</li>
+                {tallas.map((talla) => (
+                  <li
+                    key={talla._id}
+                    className={`border border-solid border-gray-500 rounded-full cursor-pointer h-8 w-8 flex items-center justify-center mr-2 ${talla.disponible ? 'bg-green-500' : 'bg-red-500'}`}
+                  >
+                    {talla.talle}
+                  </li>
+                ))}
               </ul>
             </div>
 
-            <div className="options-colors">
-              <h1>Colores</h1>
-              <ul className="flex">
-                <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-red-500"></li>
-                <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-black"></li>
-                <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-red-700"></li>
-                <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-pink-400"></li>
-                <li className="border-none h-8 w-8 flex items-center justify-center mr-2 bg-indigo-800"></li>
-              </ul>
+            <div className="">
+              {/*Carrousel de colores disponibless*/}
+             <ColorCarousel colores={colores} />
             </div>
+
           </div>
-          <a href="#" className="btn">
-            Agregar al carro
-          </a>
+          
         </section>
       </div>
     </div>

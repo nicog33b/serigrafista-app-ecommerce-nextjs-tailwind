@@ -4,8 +4,7 @@ import NavbarMain from './components/ui/navbarMain'
 import NavbarOptions from './components/ui/navbarOptions'
 import './globals.css'
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "react-alice-carousel/lib/alice-carousel.css";
 import Footer from './components/ui/footer';
 
 

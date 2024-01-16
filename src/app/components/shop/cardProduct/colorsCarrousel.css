@@ -1,0 +1,11 @@
+.color-carousel-container {
+    max-width: auto; /* Adjust the max-width as needed */
+    margin: 0 auto;
+  }
+  
+  .carousel-item {
+    height: 100px; /* Adjust the height as needed */
+    width: 100px;  /* Adjust the width as needed */
+    border: 2px solid #ccc;
+    margin:0;
+  }

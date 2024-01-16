@@ -7,28 +7,28 @@
 }
 
 h1 {
-    font-size: 1.2rem;
+    font-size: .9rem;
     text-transform: capitalize;
 }
 
 
 .card {
     position: relative;
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.3);
     overflow: hidden;
-    height: 500px
+    height: 399px;
     ;
  
 }
 
 .card > figure {
-    width: 90%;
-    margin: 20px auto 0 auto;
+    width: 100%;
+    margin: 10px auto 0 auto;
 }
 
 .card > figure > img {
-    width: 100%;
+    width: 70%;
 }
 
 .details {
@@ -36,7 +36,7 @@ h1 {
     border-radius: 10px;
     padding: 20px;
     position: absolute;
-    top: 85%;
+    top: 100%;
     width: 100%;
     transition: box-shadow .3s ease-in-out,
                 top .3s ease-in-out;
@@ -60,14 +60,36 @@ h1 {
 }
 
 .details > .min-details > h1 > span {
-    color: #7B7B7B;
+
     display: block;
-    font-size: .9rem;
-    font-weight: 400;
+    font-size:  0.6rem;
+    font-weight: 500;
+
+}
+
+
+.price {
+ 
+   
+    font-size:  1.25rem;
+    font-weight: 500;
+   
+}
+
+
+
+/* Añade el siguiente estilo a tu archivo CSS */
+.options-colors ul {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se distribuyan en varias filas */
+}
+
+.options-colors li {
+  margin-bottom: 2px; /* Ajusta el espacio entre los elementos en la columna */
 }
 
 .details > .options h1 {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .details > .options ul {
@@ -89,7 +111,7 @@ h1 {
     background-color: rgba(0,0,0,0.5);
     color: #FFF;
     font-size: .7rem;
-    font-weight: 900;
+    font-weight: 300;
     text-transform: uppercase;
     transition: background-color .3s ease-in-out;
 }
@@ -105,7 +127,7 @@ h1 {
     border-radius: 5px;
     color: #FFF;
     display: block;
-    padding: 10px;
+    padding:6px;
     text-align: center;
     text-decoration: none;
     text-transform: capitalize;
@@ -119,15 +141,38 @@ h1 {
   transform: translateY(-2px);
 }
 
+
+
+
 /* Media Queries */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
+
+.card:hover .details {
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
+    top: 36%;
+}
+
+
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 841px) {
   .details {
-    top: 70%; /* Adjust the percentage as needed */
+    top: 80%; /* Adjust the percentage as needed */
   }
+
+
+  .card:hover .details {
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
+    top: 31%;
+}
+
+  
 }
 
 @media only screen and (max-width: 480px) {
   .details {
-    top: 60%; /* Adjust the percentage as needed */
+    top: 70%; /* Adjust the percentage as needed */
   }
 }
