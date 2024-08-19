@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎨 Mutageno - Serigrafía Personalizada y eCommerce
 
-## Getting Started
+**Mutageno** es una plataforma eCommerce diseñada para un serigrafista que no solo ofrece productos de serigrafía, sino que también permite a los usuarios crear y personalizar sus propias remeras. Los usuarios pueden diseñar su prenda única, enviarla al serigrafista a través de la tienda y recibirla directamente en su puerta.
 
-First, run the development server:
+## 🚀 Descripción del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Mutageno combina la funcionalidad de un eCommerce tradicional con una herramienta de personalización de productos. Esta plataforma está pensada para aquellos que buscan prendas únicas y personalizadas, ofreciendo una experiencia de compra que va más allá de seleccionar productos predefinidos. El serigrafista recibe los diseños personalizados y los convierte en productos reales, listos para ser enviados a los clientes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js**: Framework React para la construcción de aplicaciones web rápidas y eficientes.
+- **React**: Biblioteca JavaScript para crear interfaces de usuario interactivas.
+- **Tailwind CSS**: Framework CSS para diseñar de manera rápida y personalizada.
+- **React Alice Carousel**: Componente de carrusel para mostrar productos destacados.
+- **SweetAlert2**: Para manejar alertas y notificaciones de manera elegante.
+- **React Slick**: Carrusel de productos adicional para mejorar la experiencia del usuario.
+- **JSON Web Token (JWT)**: Para la autenticación y manejo seguro de usuarios.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ✨ Funcionalidades Principales
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **eCommerce Completo**: Venta de productos serigrafiados con un proceso de compra sencillo e intuitivo.
+- **Personalización de Remeras**: Herramienta para que los usuarios diseñen su propia remera y la envíen al serigrafista.
+- **Carruseles Interactivos**: Presentación de productos destacados y populares a través de carruseles.
+- **Autenticación Segura**: Manejo de usuarios con JWT para proteger la información personal y de pago.
+- **Notificaciones y Alertas**: Implementación de SweetAlert2 para mejorar la experiencia del usuario.
